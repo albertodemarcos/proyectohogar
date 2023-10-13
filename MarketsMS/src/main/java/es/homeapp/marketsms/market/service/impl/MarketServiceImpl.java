@@ -1,11 +1,12 @@
-package es.homeapp.marketsms.market.impl;
+package es.homeapp.marketsms.market.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import es.homeapp.marketsms.market.Market;
-import es.homeapp.marketsms.market.MarketDTO;
-import es.homeapp.marketsms.market.MarketRepository;
-import es.homeapp.marketsms.market.MarketService;
+import es.homeapp.marketsms.market.model.Market;
+import es.homeapp.marketsms.market.model.MarketCommand;
+import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.repository.MarketRepository;
+import es.homeapp.marketsms.market.service.MarketService;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -19,7 +20,7 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public MarketDTO createMarket(final MarketDTO market) {
+	public MarketDTO createMarket(final MarketCommand market) {
 		// TODO Auto-generated method stub
 		Market entity = new Market(market);
 		entity = this.marketRepository.save(entity);
@@ -27,8 +28,11 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public MarketDTO updateMarket(MarketDTO market) {
+	public MarketDTO updateMarket(MarketCommand market) {
 		// TODO Auto-generated method stub
+		
+		MarketDTO dto = null;
+		
 		try {
 			
 			Market entity = this.marketRepository.findById(market.getId()).orElse( null );
@@ -43,13 +47,15 @@ public class MarketServiceImpl implements MarketService {
 			
 			this.marketRepository.findById(market.getId());
 			
+			dto = new MarketDTO(entity);
+			
 		}catch(Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			
 		}
 		
-		return market;
+		return dto;
 	}
 
 	@Override

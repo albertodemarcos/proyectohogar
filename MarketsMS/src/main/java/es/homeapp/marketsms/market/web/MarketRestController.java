@@ -1,4 +1,4 @@
-package es.homeapp.marketsms.market;
+package es.homeapp.marketsms.market.web;
 
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.homeapp.marketsms.config.Constant;
+import es.homeapp.marketsms.market.model.MarketCommand;
+import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.service.MarketService;
+import es.homeapp.marketsms.market.util.MarketValidator;
 import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,11 +51,11 @@ public class MarketRestController {
 	}
 	
 	@PostMapping(value="/markets")
-	public ResponseEntity<MarketDTO> createMarket( @RequestBody final MarketDTO market, BindingResult result) {
+	public ResponseEntity<MarketDTO> createMarket( @RequestBody final MarketCommand market, BindingResult result) {
 		log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
-			return new ResponseEntity<>(market, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		MarketDTO newMarketDTO = marketService.createMarket(market);
 		return new ResponseEntity<>(newMarketDTO, HttpStatus.OK);
@@ -58,11 +63,11 @@ public class MarketRestController {
 	
 	
 	@PutMapping(value = "/markets")
-	public ResponseEntity<MarketDTO> updateMarket(@RequestBody final MarketDTO market, BindingResult result){
+	public ResponseEntity<MarketDTO> updateMarket(@RequestBody final MarketCommand market, BindingResult result){
 		log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
-			return new ResponseEntity<>(market, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		MarketDTO newMarketDTO = marketService.createMarket(market);
 		return new ResponseEntity<>(newMarketDTO, HttpStatus.OK);

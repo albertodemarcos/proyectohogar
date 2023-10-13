@@ -1,4 +1,4 @@
-package es.homeapp.marketsms.market;
+package es.homeapp.marketsms.market.model;
 
 import java.io.Serializable;
 

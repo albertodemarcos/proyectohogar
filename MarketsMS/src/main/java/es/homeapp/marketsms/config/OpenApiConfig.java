@@ -1,4 +1,4 @@
-package es.homeapp.marketsms.market.config;
+package es.homeapp.marketsms.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

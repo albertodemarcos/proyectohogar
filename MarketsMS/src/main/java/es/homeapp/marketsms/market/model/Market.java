@@ -1,4 +1,4 @@
-package es.homeapp.marketsms.market;
+package es.homeapp.marketsms.market.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -34,7 +34,7 @@ public class Market implements Serializable {
 		super();
 	}
 	
-	public Market(MarketDTO dto) {
+	public Market(MarketCommand dto) {
 		super();
 		this.setId(dto.getId());
 		this.setDescription(dto.getDescription());

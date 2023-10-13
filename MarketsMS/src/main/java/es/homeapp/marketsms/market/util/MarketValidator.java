@@ -1,9 +1,11 @@
-package es.homeapp.marketsms.market;
+package es.homeapp.marketsms.market.util;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.repository.MarketRepository;
 import io.micrometer.common.util.StringUtils;
 
 
