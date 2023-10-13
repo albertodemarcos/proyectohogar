@@ -1,8 +1,10 @@
-package es.homeapp.marketsms.market.model;
+package es.homeapp.marketsms.market.api;
 
 import java.io.Serializable;
 
-public class MarketDTO implements Serializable {
+import es.homeapp.marketsms.market.model.Market;
+
+public class MarketResponse implements Serializable {
 
 	private static final long serialVersionUID = -3438713904388741952L;
 	
@@ -10,11 +12,11 @@ public class MarketDTO implements Serializable {
 	private String name;
 	private String description;
 
-	public MarketDTO() {
+	public MarketResponse() {
 		super();
 	}
 	
-	public MarketDTO(Market entity) {
+	public MarketResponse(Market entity) {
 		super();
 		this.setId(entity.getId());
 		this.setDescription(entity.getDescription());

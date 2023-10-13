@@ -1,8 +1,8 @@
-package es.homeapp.marketsms.market.model;
+package es.homeapp.marketsms.market.api;
 
 import java.io.Serializable;
 
-public class MarketCommand implements Serializable {
+public class MarketRequest implements Serializable {
 
 	/**
 	 * 

@@ -1,17 +1,17 @@
 package es.homeapp.marketsms.market.service;
 
-import es.homeapp.marketsms.market.model.MarketCommand;
-import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.api.MarketRequest;
+import es.homeapp.marketsms.market.api.MarketResponse;
 
 public interface MarketService {
 
 	
-	MarketDTO createMarket(MarketCommand market);
+	MarketResponse createMarket(MarketRequest market);
 	
-	MarketDTO updateMarket(MarketCommand market);
+	MarketResponse updateMarket(MarketRequest market);
 	
 	boolean deleteMarket(String idMarketStr);
 	
-	MarketDTO getMarket(String idMarketStr);
+	MarketResponse getMarket(String idMarketStr);
 	
 }

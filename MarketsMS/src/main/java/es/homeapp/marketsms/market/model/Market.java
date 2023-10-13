@@ -3,6 +3,7 @@ package es.homeapp.marketsms.market.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import es.homeapp.marketsms.market.api.MarketRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Market implements Serializable {
 		super();
 	}
 	
-	public Market(MarketCommand dto) {
+	public Market(MarketRequest dto) {
 		super();
 		this.setId(dto.getId());
 		this.setDescription(dto.getDescription());

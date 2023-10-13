@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.api.MarketResponse;
 import es.homeapp.marketsms.market.repository.MarketRepository;
 import io.micrometer.common.util.StringUtils;
 
@@ -21,13 +21,13 @@ public class MarketValidator implements Validator {
 	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
-		return MarketDTO.class.isAssignableFrom(clazz);
+		return MarketResponse.class.isAssignableFrom(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
-		MarketDTO marketDTO = ( MarketDTO ) target;
+		MarketResponse marketDTO = ( MarketResponse ) target;
 		
 		if( marketDTO == null ) {
 			errors.reject("", "The market is null");

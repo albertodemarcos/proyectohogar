@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.homeapp.marketsms.config.Constant;
-import es.homeapp.marketsms.market.model.MarketCommand;
-import es.homeapp.marketsms.market.model.MarketDTO;
+import es.homeapp.marketsms.market.api.MarketRequest;
+import es.homeapp.marketsms.market.api.MarketResponse;
 import es.homeapp.marketsms.market.service.MarketService;
 import es.homeapp.marketsms.market.util.MarketValidator;
 import jakarta.validation.constraints.Pattern;
@@ -37,39 +37,39 @@ public class MarketRestController {
 	}
 	
 	@GetMapping(value="/hello")
-	public ResponseEntity<MarketDTO> getHello(){
+	public ResponseEntity<MarketResponse> getHello(){
 		log.debug("getHello()");
-		return new ResponseEntity<MarketDTO>(new MarketDTO(), HttpStatus.OK);
+		return new ResponseEntity<MarketResponse>(new MarketResponse(), HttpStatus.OK);
 	}
 
 	
 	@GetMapping(value="/markets/{idIncidenceStr}")
-	public ResponseEntity<MarketDTO> getMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idIncidenceStr){
+	public ResponseEntity<MarketResponse> getMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idIncidenceStr){
 		log.debug("getMarket(idIncidenceStr={})", idIncidenceStr);
-		MarketDTO newMarketDTO = this.marketService.getMarket(idIncidenceStr);
-		return new ResponseEntity<MarketDTO>(newMarketDTO, HttpStatus.OK);
+		MarketResponse newMarketDTO = this.marketService.getMarket(idIncidenceStr);
+		return new ResponseEntity<MarketResponse>(newMarketDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/markets")
-	public ResponseEntity<MarketDTO> createMarket( @RequestBody final MarketCommand market, BindingResult result) {
+	public ResponseEntity<MarketResponse> createMarket( @RequestBody final MarketRequest market, BindingResult result) {
 		log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
-		MarketDTO newMarketDTO = marketService.createMarket(market);
+		MarketResponse newMarketDTO = marketService.createMarket(market);
 		return new ResponseEntity<>(newMarketDTO, HttpStatus.OK);
 	}
 	
 	
 	@PutMapping(value = "/markets")
-	public ResponseEntity<MarketDTO> updateMarket(@RequestBody final MarketCommand market, BindingResult result){
+	public ResponseEntity<MarketResponse> updateMarket(@RequestBody final MarketRequest market, BindingResult result){
 		log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
-		MarketDTO newMarketDTO = marketService.createMarket(market);
+		MarketResponse newMarketDTO = marketService.createMarket(market);
 		return new ResponseEntity<>(newMarketDTO, HttpStatus.OK);
 	}
 	

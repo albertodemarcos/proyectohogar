@@ -2,9 +2,9 @@ package es.homeapp.marketsms.market.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import es.homeapp.marketsms.market.api.MarketRequest;
+import es.homeapp.marketsms.market.api.MarketResponse;
 import es.homeapp.marketsms.market.model.Market;
-import es.homeapp.marketsms.market.model.MarketCommand;
-import es.homeapp.marketsms.market.model.MarketDTO;
 import es.homeapp.marketsms.market.repository.MarketRepository;
 import es.homeapp.marketsms.market.service.MarketService;
 import jakarta.transaction.Transactional;
@@ -20,18 +20,18 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public MarketDTO createMarket(final MarketCommand market) {
+	public MarketResponse createMarket(final MarketRequest market) {
 		// TODO Auto-generated method stub
 		Market entity = new Market(market);
 		entity = this.marketRepository.save(entity);
-		return new MarketDTO(entity);
+		return new MarketResponse(entity);
 	}
 
 	@Override
-	public MarketDTO updateMarket(MarketCommand market) {
+	public MarketResponse updateMarket(MarketRequest market) {
 		// TODO Auto-generated method stub
 		
-		MarketDTO dto = null;
+		MarketResponse dto = null;
 		
 		try {
 			
@@ -47,7 +47,7 @@ public class MarketServiceImpl implements MarketService {
 			
 			this.marketRepository.findById(market.getId());
 			
-			dto = new MarketDTO(entity);
+			dto = new MarketResponse(entity);
 			
 		}catch(Exception e) {
 			// TODO: handle exception
@@ -73,7 +73,7 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public MarketDTO getMarket(String idMarketStr) {
+	public MarketResponse getMarket(String idMarketStr) {
 		// TODO Auto-generated method stub
 		try {
 			Long idMarket = Long.parseLong(idMarketStr);
@@ -81,7 +81,7 @@ public class MarketServiceImpl implements MarketService {
 			if( entity == null ) {
 				return null;
 			}
-			return new MarketDTO(entity);
+			return new MarketResponse(entity);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
