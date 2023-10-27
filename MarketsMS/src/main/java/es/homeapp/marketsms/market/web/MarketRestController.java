@@ -73,10 +73,10 @@ public class MarketRestController {
 		return new ResponseEntity<>(newMarketDTO, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/markets/{idIncidenceStr}")
-	public ResponseEntity<Boolean> deleteMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idIncidenceStr){
-		log.debug("deleteMarket(idIncidenceStr={})", idIncidenceStr);
-		boolean deleted = this.marketService.deleteMarket(idIncidenceStr);
+	@DeleteMapping(value = "/markets/{idMarketStr}")
+	public ResponseEntity<Boolean> deleteMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idMarketStr){
+		log.debug("deleteMarket(idMarketStr={})", idMarketStr);
+		boolean deleted = this.marketService.deleteMarket(idMarketStr);
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
 	}
 	
