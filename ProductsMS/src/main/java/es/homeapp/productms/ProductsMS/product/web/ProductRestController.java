@@ -37,20 +37,20 @@ public class ProductRestController {
 	
 	@GetMapping(value="/hello")
 	public ResponseEntity<?> getHello(){
-		log.debug("getHello()");
+		//log.debug("getHello()");
 		return new ResponseEntity<String>("Esto es una prueba", HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/products/{idIncidenceStr}")
 	public ResponseEntity<ProductResponse> getProduct(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idIncidenceStr){
-		log.debug("getProduct(idIncidenceStr={})", idIncidenceStr);
+		//log.debug("getProduct(idIncidenceStr={})", idIncidenceStr);
 		ProductResponse newProductDTO = this.productService.getProduct(idIncidenceStr);
 		return new ResponseEntity<ProductResponse>(newProductDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/products")
 	public ResponseEntity<ProductResponse> createProduct( @RequestBody final ProductRequest product, BindingResult result) {
-		log.debug("createProduct(product={})", product!=null?product.toString():null);
+		//log.debug("createProduct(product={})", product!=null?product.toString():null);
 		validator.validate(product, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -62,7 +62,7 @@ public class ProductRestController {
 	
 	@PutMapping(value = "/products")
 	public ResponseEntity<ProductResponse> updateProduct(@RequestBody final ProductRequest product, BindingResult result){
-		log.debug("createProduct(product={})", product!=null?product.toString():null);
+		//log.debug("createProduct(product={})", product!=null?product.toString():null);
 		validator.validate(product, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -73,7 +73,7 @@ public class ProductRestController {
 	
 	@DeleteMapping(value = "/products/{idProductStr}")
 	public ResponseEntity<Boolean> deleteProduct(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idProductStr){
-		log.debug("deleteProduct(idProductStr={})", idProductStr);
+		//log.debug("deleteProduct(idProductStr={})", idProductStr);
 		boolean deleted = this.productService.deleteProduct(idProductStr);
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
 	}

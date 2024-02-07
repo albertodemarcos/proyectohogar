@@ -38,21 +38,21 @@ public class MarketRestController {
 	
 	@GetMapping(value="/hello")
 	public ResponseEntity<MarketResponse> getHello(){
-		log.debug("getHello()");
+		//log.debug("getHello()");
 		return new ResponseEntity<MarketResponse>(new MarketResponse(), HttpStatus.OK);
 	}
 
 	
 	@GetMapping(value="/markets/{idIncidenceStr}")
 	public ResponseEntity<MarketResponse> getMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idIncidenceStr){
-		log.debug("getMarket(idIncidenceStr={})", idIncidenceStr);
+		//log.debug("getMarket(idIncidenceStr={})", idIncidenceStr);
 		MarketResponse newMarketDTO = this.marketService.getMarket(idIncidenceStr);
 		return new ResponseEntity<MarketResponse>(newMarketDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/markets")
 	public ResponseEntity<MarketResponse> createMarket( @RequestBody final MarketRequest market, BindingResult result) {
-		log.debug("createMarket(market={})", market!=null?market.toString():null);
+		//log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -64,7 +64,7 @@ public class MarketRestController {
 	
 	@PutMapping(value = "/markets")
 	public ResponseEntity<MarketResponse> updateMarket(@RequestBody final MarketRequest market, BindingResult result){
-		log.debug("createMarket(market={})", market!=null?market.toString():null);
+		//log.debug("createMarket(market={})", market!=null?market.toString():null);
 		validator.validate(market, result);
 		if( result.hasErrors() ) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -75,7 +75,7 @@ public class MarketRestController {
 	
 	@DeleteMapping(value = "/markets/{idMarketStr}")
 	public ResponseEntity<Boolean> deleteMarket(@PathVariable @Pattern(regexp = Constant.ENTITIES_ID_REGEX) String idMarketStr){
-		log.debug("deleteMarket(idMarketStr={})", idMarketStr);
+		//log.debug("deleteMarket(idMarketStr={})", idMarketStr);
 		boolean deleted = this.marketService.deleteMarket(idMarketStr);
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
 	}
