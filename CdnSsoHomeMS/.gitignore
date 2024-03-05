@@ -6,8 +6,8 @@ target/
 !**/src/test/**/target/
 
 src/main/resources/static/WebContent/
-src/main/resources/static/cdn-login-sso-home/.angular
-src/main/resources/static/cdn-login-sso-home/.vscode
+src/main/resources/static/cdn-sso-home-login/.angular
+src/main/resources/static/cdn-sso-home-login/.vscode
 
 ### STS ###
 .apt_generated
