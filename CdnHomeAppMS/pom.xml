@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.alovera.home</groupId>
-  <artifactId>CdnSsoHomeMS</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>CdnHomeAppMS</artifactId>
+  <version>0.0.1</version>
 
   <name>CdnSsoHomeMS</name>
   <!-- FIXME change it to the project's website -->
@@ -72,13 +72,13 @@
       </plugins>
     </pluginManagement>
     
-    <finalName>cdn-sso-homems-${project.version}</finalName>
+    <finalName>cdn-homems-app-${project.version}</finalName>
 		
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<excludes>
-					<exclude>static/cdn-sso-home-login/**</exclude>
+					<exclude>static/cdn-home-app/**</exclude>
 				</excludes>				
 			</resource>
 		</resources>

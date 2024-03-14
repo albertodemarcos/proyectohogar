@@ -10,17 +10,19 @@ import { AuthService } from './auth.service';
 })
 export class LoginComponent {
 
+  private static URL_PORTAL = 'homealovera.com';
+
   username!: string;
   password!: string;
 
   constructor(private authService: AuthService) { }
 
-
   login() {
     this.authService.login(this.username, this.password).subscribe({
       next: (response: any) => {
         console.log('Login exitoso', response);
-        window.location.href = 'https://www.ejemplo.com/pagina-no-angular';
+        //window.location.href = 'http://'+LoginComponent.URL_PORTAL;
+        window.location.href = 'http://localhost:4201';
       },
       error: (error: any) => {
         console.error('Error en el login', error);
