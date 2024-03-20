@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  private static URL_SSO_PORTAL = 'sso.homealovera.com';
+  //private static URL_SSO_PORTAL = 'http://localhost:8090';
 
-  private loginUrl = '/api/auth/login'; // URL al endpoint de login en tu backend
+  private loginUrl = '/api/sso/auth/login'; // URL al endpoint de login en tu backend
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.home.web.dtos.LoginResponse;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/portal")
 public class MainController {
 
 	private final Logger logger = LoggerFactory.getLogger(MainController.class);

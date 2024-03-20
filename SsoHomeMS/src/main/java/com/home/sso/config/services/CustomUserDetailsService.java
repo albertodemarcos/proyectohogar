@@ -1,6 +1,7 @@
 package com.home.sso.config.services;
 
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,10 +14,12 @@ import io.micrometer.common.util.StringUtils;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserService userService;
+    //private final AuthenticationManager authenticationManager; 
 
     // @Lazy aquí evita la inicialización inmediata y resuelve la dependencia circular
-    public CustomUserDetailsService(@Lazy UserService userService) {
+    public CustomUserDetailsService(@Lazy UserService userService/*, @Lazy AuthenticationManager authenticationManager*/) {
         this.userService = userService;
+        //this.authenticationManager = authenticationManager;
     }
 	
 	
@@ -29,6 +32,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 		
 		UserDetails admin = this.userService.findUser(username);
+		
+		
 		
 	    return admin;
 	}

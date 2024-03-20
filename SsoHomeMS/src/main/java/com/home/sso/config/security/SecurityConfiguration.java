@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,7 +22,7 @@ import com.home.sso.config.services.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private static final String SSO_ENTRY_POINT = "http://localhost:8080/sso/login";
+    //private static final String SSO_ENTRY_POINT = "http://localhost:8080/sso/login";
 	
 	@Autowired
     private CustomUserDetailsService userDetailsService;
@@ -35,8 +36,11 @@ public class SecurityConfiguration {
 				requests.requestMatchers("/api/**", "/api/auth/**").permitAll();
 				requests.anyRequest().authenticated();
 			})
-			.exceptionHandling(handling -> handling.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(SSO_ENTRY_POINT)))
-			.sessionManagement( session -> session.maximumSessions(1))
+			//.exceptionHandling(handling -> handling.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8080/sso/login")))
+			.sessionManagement( session -> {
+				session.maximumSessions(1);
+				session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS );
+			} )
 			.formLogin((form) -> form.disable())
 			.httpBasic( http -> http.disable() );
 		
@@ -50,13 +54,15 @@ public class SecurityConfiguration {
 	
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+        
+    	
+    	return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Bean
+    /*@Bean
     WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/api/auth/login").requestMatchers("/ignore2");
-    }
+        return (web) -> web.ignoring().requestMatchers("/api/sso/auth/login");
+    }*/
     
     @Bean
     DaoAuthenticationProvider authenticationProvider() {

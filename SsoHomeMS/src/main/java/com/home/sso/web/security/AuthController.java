@@ -16,7 +16,7 @@ import com.home.sso.web.dtos.LoginRequest;
 import com.home.sso.web.dtos.LoginResponse;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/sso/auth")
 public class AuthController {
 
 	private final Logger logger = LoggerFactory.getLogger(AuthController.class);

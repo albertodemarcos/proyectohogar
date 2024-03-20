@@ -21,8 +21,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (response: any) => {
         console.log('Login exitoso', response);
-        //window.location.href = 'http://'+LoginComponent.URL_PORTAL;
-        window.location.href = 'http://localhost:4201';
+        window.location.href = 'http://'+LoginComponent.URL_PORTAL;
       },
       error: (error: any) => {
         console.error('Error en el login', error);
