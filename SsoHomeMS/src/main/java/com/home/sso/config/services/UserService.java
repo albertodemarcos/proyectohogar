@@ -6,18 +6,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class UserService {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 
-	public UserDetails findUser(String username) {
-
-		UserDetails admin = User.withUsername("administrador").password(passwordEncoder.encode("administrador"))
-				.roles("ADMIN").build();
-
-		return admin;
-	}
+//	public UserDetails findUser(String username) {
+//
+//		UserDetails admin = User.withUsername("administrador").password(passwordEncoder.encode("administrador"))
+//				.roles("ADMIN").build();
+//
+//		return admin;
+//	}
 
 }

@@ -12,11 +12,11 @@ public class SessionConfiguration {
     @Bean
     CookieSerializer cookieSerializer() {
         DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setDomainName("homealovera.com");
+//        serializer.setDomainName("homealovera.com");
         serializer.setCookieName("JSESSIONID");
         serializer.setUseHttpOnlyCookie(true);
         serializer.setUseSecureCookie(false);
-        serializer.setCookiePath("/"); // Disponible en todo el dominio
+//        serializer.setCookiePath("/"); // Disponible en todo el dominio
         serializer.setSameSite("None");
         
         return serializer;

@@ -24,8 +24,8 @@ public class SecurityConfiguration {
 
     //private static final String SSO_ENTRY_POINT = "http://localhost:8080/sso/login";
 	
-	@Autowired
-    private CustomUserDetailsService userDetailsService;
+//	@Autowired
+//    private CustomUserDetailsService userDetailsService;
 
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity ) throws Exception {
@@ -39,7 +39,7 @@ public class SecurityConfiguration {
 			//.exceptionHandling(handling -> handling.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8080/sso/login")))
 			.sessionManagement( session -> {
 				session.maximumSessions(1);
-				session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS );
+				session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED );
 			} )
 			.formLogin((form) -> form.disable())
 			.httpBasic( http -> http.disable() );
@@ -54,8 +54,6 @@ public class SecurityConfiguration {
 	
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        
-    	
     	return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -64,13 +62,13 @@ public class SecurityConfiguration {
         return (web) -> web.ignoring().requestMatchers("/api/sso/auth/login");
     }*/
     
-    @Bean
-    DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return authProvider;
-    }
+//    @Bean
+//    DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(new BCryptPasswordEncoder());
+//        return authProvider;
+//    }
 	
 	/*@Bean
 	UserDetailsService userDetailsService() {
